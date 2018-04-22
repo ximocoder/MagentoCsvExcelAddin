@@ -3,15 +3,11 @@ using Office = Microsoft.Office.Core;
 
 namespace ExcelAdd4Magento
 {
-    public partial class ThisAddIn
+    public partial class MagentoCsvAddIn
     {
         void Application_WorkbookBeforeSave(Excel.Workbook Wb, bool SaveAsUI, ref bool Cancel)
         {
-            Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
-            Excel.Range firstRow = activeWorksheet.get_Range("A1");
-            firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
-            Excel.Range newFirstRow = activeWorksheet.get_Range("A1");
-            newFirstRow.Value2 = "This text was added by using code";
+
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
