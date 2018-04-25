@@ -31,7 +31,7 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Code\MagentoCsvExcelAddin\bin\</PublishUrl>
+    <PublishUrl>D:\GitHub\MagentoCsvExcelAddin\Setup\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
     <ApplicationVersion>1.0.0.2</ApplicationVersion>
@@ -197,6 +197,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ExcelAdd4Magento_1_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -227,10 +228,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ExcelAdd4Magento_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ExcelAdd4Magento_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ACD12A90C962C024323B178582C8C73FA7DF10DC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0B0779674CD152F6F72E617ECE40E70E39AC59F5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -242,7 +243,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
         <Host Name="Excel" GeneratedCodeNamespace="ExcelAdd4Magento" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="MagentoCsvAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="MagentoCsvAddIn.Designer.xml" GeneratedCode="MagentoCsvAddIn.Designer.cs" PublishedHash="3F1859C78EE7BCFB1717B192CD98E8EFEA383BF4" />
+          <HostItem Name="ThisAddIn" Code="MagentoCsvAddIn.cs" CanonicalName="AddIn" PublishedHash="3F1859C78EE7BCFB1717B192CD98E8EFEA383BF4" CanActivate="false" IconIndex="1" Blueprint="MagentoCsvAddIn.Designer.xml" GeneratedCode="MagentoCsvAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
