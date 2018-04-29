@@ -28,6 +28,7 @@ namespace ExcelAdd4Magento
                     MessageBoxIcon.Error);
                 return;
             }
+
             FileDialog fileDialog = new SaveFileDialog();
             fileDialog.AddExtension = true;
             fileDialog.DefaultExt = "csv";

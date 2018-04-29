@@ -60,7 +60,7 @@
             // 
             this.btnImportFromCsv.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.btnImportFromCsv.Image = global::ExcelAdd4Magento.Properties.Resources.excel_icon;
-            this.btnImportFromCsv.Label = "Import from Csv";
+            this.btnImportFromCsv.Label = "Import from Magento Csv";
             this.btnImportFromCsv.Name = "btnImportFromCsv";
             this.btnImportFromCsv.ShowImage = true;
             this.btnImportFromCsv.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnImportFromCsv_Click);
@@ -69,7 +69,7 @@
             // 
             this.btnExportToMagento.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.btnExportToMagento.Image = global::ExcelAdd4Magento.Properties.Resources.magento;
-            this.btnExportToMagento.Label = "Export to Magento";
+            this.btnExportToMagento.Label = "Export to Magento csv";
             this.btnExportToMagento.Name = "btnExportToMagento";
             this.btnExportToMagento.ShowImage = true;
             this.btnExportToMagento.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnExportToMagento_Click);
