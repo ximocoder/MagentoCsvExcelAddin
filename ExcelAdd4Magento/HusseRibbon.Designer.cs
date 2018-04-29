@@ -36,6 +36,7 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.groupHusse = this.Factory.CreateRibbonGroup();
+            this.btnImportFromCsv = this.Factory.CreateRibbonButton();
             this.btnExportToMagento = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.groupHusse.SuspendLayout();
@@ -50,9 +51,19 @@
             // 
             // groupHusse
             // 
+            this.groupHusse.Items.Add(this.btnImportFromCsv);
             this.groupHusse.Items.Add(this.btnExportToMagento);
             this.groupHusse.Label = "Husse";
             this.groupHusse.Name = "groupHusse";
+            // 
+            // btnImportFromCsv
+            // 
+            this.btnImportFromCsv.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnImportFromCsv.Image = global::ExcelAdd4Magento.Properties.Resources.excel_icon;
+            this.btnImportFromCsv.Label = "Import from Csv";
+            this.btnImportFromCsv.Name = "btnImportFromCsv";
+            this.btnImportFromCsv.ShowImage = true;
+            this.btnImportFromCsv.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnImportFromCsv_Click);
             // 
             // btnExportToMagento
             // 
@@ -82,6 +93,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupHusse;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnExportToMagento;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnImportFromCsv;
     }
 
     partial class ThisRibbonCollection

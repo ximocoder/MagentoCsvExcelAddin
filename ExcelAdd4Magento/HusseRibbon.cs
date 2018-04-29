@@ -6,13 +6,13 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
 using Microsoft.Office.Interop.Excel;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace ExcelAdd4Magento
 {
     public partial class HusseRibbon
     {
         private List<MagentoDictionary> magentoDictionary;
-
 
         private void HusseRibbon_Load(object sender, RibbonUIEventArgs e)
         {
@@ -37,9 +37,15 @@ namespace ExcelAdd4Magento
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                SaveCsv(fileDialog.FileName);
+                try
+                {
+                    SaveCsv(fileDialog.FileName);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
         }
 
         private bool CheckExcel()
@@ -68,9 +74,14 @@ namespace ExcelAdd4Magento
                 return false;
             return true;
         }
-        
+
         private void SaveCsv(string fileDialogFileName)
         {
+            if (System.IO.File.Exists(fileDialogFileName))
+            {
+                MessageBox.Show("The file already exists. We will create a new one with .tmp extension");
+                fileDialogFileName += ".tmp";
+            }
             using (var w = new StreamWriter(fileDialogFileName))
             {
                 foreach (var lineDict in magentoDictionary)
@@ -85,7 +96,7 @@ namespace ExcelAdd4Magento
 
         private void ReadExcel()
         {
-            var app = Globals.ThisAddIn.Application;
+            Application app = Globals.ThisAddIn.Application;
             magentoDictionary.Clear();
 
             Worksheet activeWorksheet = app.ActiveSheet;
@@ -99,6 +110,74 @@ namespace ExcelAdd4Magento
                 string colB = ((Range)activeWorksheet.Cells[idxRow, 2]).Value2;
                 magentoDictionary.Add(new MagentoDictionary() { Line = idxRow, ColumnA = colA, ColumnB = colB });
             }
+        }
+        private void CleanExcel()
+        {
+            Application app = Globals.ThisAddIn.Application;
+            magentoDictionary.Clear();
+
+            Worksheet activeWorksheet = app.ActiveSheet;
+            activeWorksheet.Cells.Clear();
+        }
+
+
+        private void btnImportFromCsv_Click(object sender, RibbonControlEventArgs e)
+        {
+            FileDialog fileDialog = new OpenFileDialog();
+            fileDialog.AddExtension = true;
+            fileDialog.DefaultExt = "csv";
+            fileDialog.Filter = "Magento translation csv files (*.csv)|*.csv|All files (*.*)|*.*";
+            fileDialog.FilterIndex = 1;
+            fileDialog.Title = "Magento csv File Dialog";
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                CleanExcel();
+                try
+                {
+                    ReadCsv(fileDialog.FileName);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ReadCsv(string fileName)
+        {
+            List<string> listA = new List<string>();
+            List<string> listB = new List<string>();
+            Application app = Globals.ThisAddIn.Application;
+
+            using (var reader = new StreamReader(fileName))
+            {
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    if (values[0] != null)
+                        listA.Add(values[0].Replace("\"", ""));
+                    else
+                        listA.Add("");
+                    if (values[1] != null)
+                        listB.Add(values[1].Replace("\"", ""));
+                    else
+                        listA.Add("");
+                }
+            }
+
+            Worksheet activeWorksheet = app.ActiveSheet;
+
+            for (int idxRow = 1; idxRow <= listA.Count; idxRow++)
+            {
+                ((Range)activeWorksheet.Cells[idxRow, 1]).Value2 = listA[idxRow - 1];
+                ((Range)activeWorksheet.Cells[idxRow, 2]).Value2 = listB[idxRow - 1];
+            }
+
+            activeWorksheet.Columns.AutoFit();
         }
     }
 
